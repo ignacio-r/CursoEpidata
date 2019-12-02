@@ -1,3 +1,5 @@
+package Geometria;
+
 public class Recta {
 
     private Punto punto;

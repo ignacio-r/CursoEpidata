@@ -1,5 +1,11 @@
+package CuentasBancarias;
+
 public class CuentaCostoTransferencia extends Cuenta {
 
+
+    public CuentaCostoTransferencia(Double saldo) {
+        super(saldo);
+    }
 
     @Override
     public void transferir(double monto, Cuenta cuenta) {

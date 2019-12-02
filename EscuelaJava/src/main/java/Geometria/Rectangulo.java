@@ -1,3 +1,5 @@
+package Geometria;
+
 import java.awt.*;
 
 public class Rectangulo extends FiguraGrafica {

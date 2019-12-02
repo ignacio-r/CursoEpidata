@@ -1,3 +1,5 @@
+package Geometria;
+
 import java.awt.*;
 
 public class Circulo extends FiguraGrafica {
@@ -31,8 +33,12 @@ public class Circulo extends FiguraGrafica {
          *  d = √ ( x2 - x1 )^2 + (y2 - y1 )^2
          */
 
-        distance = Math.pow(p.getX() - center.getX(), 2) + Math.pow(p.getY() - center.getY(), 2);
+        distance = getDistance(p);
         return distance < radio;
+    }
+
+    private double getDistance(Punto p) {
+        return Math.pow(p.getX() - center.getX(), 2) + Math.pow(p.getY() - center.getY(), 2);
     }
 
     @Override

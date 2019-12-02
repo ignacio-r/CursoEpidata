@@ -1,3 +1,5 @@
+package Ejemplos;
+
 public class SaludadorAntipatico {
 
     private boolean saludo;

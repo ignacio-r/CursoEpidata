@@ -1,3 +1,5 @@
+package Ejemplos;
+
 import java.util.ArrayList;
 
 public class Divisores {
