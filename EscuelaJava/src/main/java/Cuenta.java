@@ -57,7 +57,11 @@ public class Cuenta {
     }
 
     public void transferir(double monto, Cuenta cuenta) {
-        extraer(monto);
-        cuenta.depositar(monto);
+        transferir(monto, monto, cuenta);
+    }
+
+    protected void transferir(double debito, double credito, Cuenta cuenta) {
+        extraer(debito);
+        cuenta.depositar(credito);
     }
 }
