@@ -23,7 +23,7 @@ public class CuentaTest {
                 Assertions.assertThrows(RuntimeException.class, () -> {
                     cuenta.extraer(200.0);
                 });
-        Assertions.assertEquals("Saldo insuficiente!", runtimeException.getMessage());
+        Assertions.assertEquals(Cuenta.SALDO_INSUFICIENTE, runtimeException.getMessage());
     }
 
     @Test
