@@ -1,25 +1,29 @@
 package CuentasBancarias;
 
+import java.time.LocalDate;
+
 public class Transferencia extends Movimiento {
 
+    private final Long PLAZO_ACREDITACION = 6l;
     private Cuenta destino;
-    private Boolean confirmado;
-    private Integer plazoAcreditacionEnDias;
+    private Long plazoAcreditacionEnDias;
 
     Transferencia(Double monto, Cuenta origen, Cuenta destino) {
         super(monto, origen);
         this.destino = destino;
+        this.plazoAcreditacionEnDias = PLAZO_ACREDITACION;
     }
 
     public Cuenta getDestino() {
         return destino;
     }
 
-    public Boolean esConfirmado() {
-        return confirmado;
+    @Override
+    public Boolean estaConfirmado() {
+        return fecha().plusDays(PLAZO_ACREDITACION).isBefore(LocalDate.now());
     }
 
-    public Integer getPlazoAcreditacionEnDias() {
+    public Long getPlazoAcreditacionEnDias() {
         return plazoAcreditacionEnDias;
     }
 }

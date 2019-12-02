@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class Movimiento {
+public abstract class Movimiento {
 
     private Double monto;
     private LocalDateTime fechaYHorario;
@@ -30,5 +30,9 @@ public class Movimiento {
 
     public Cuenta getOrigen() {
         return origen;
+    }
+
+    public Boolean estaConfirmado() {
+        return true;
     }
 }

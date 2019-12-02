@@ -47,6 +47,7 @@ public class Cuenta {
 
     public void depositar(double montoEnPesos) {
         saldo += montoEnPesos;
+        movimientos.add(new Deposito(montoEnPesos, this));
     }
 
     public Double saldo() {
@@ -55,6 +56,7 @@ public class Cuenta {
 
     public void extraer(double montoEnPesos) {
         assertTieneSaldoSuficiente(montoEnPesos);
+        movimientos.add(new Extraccion(montoEnPesos, this));
         saldo -= montoEnPesos;
     }
 
@@ -70,6 +72,9 @@ public class Cuenta {
 
     public void transferir(double monto, Cuenta cuenta) {
         transferir(monto, monto, cuenta);
+        Transferencia transferencia = new Transferencia(monto, this, cuenta);
+        movimientos.add(transferencia);
+        cuenta.agregarMovimiento(transferencia);
     }
 
     protected void transferir(double debito, double credito, Cuenta cuenta) {
@@ -80,4 +85,29 @@ public class Cuenta {
     public LocalDate getFechaApertura() {
         return fechaApertura;
     }
+
+    public void agregarMovimiento(Movimiento movimiento) {
+        movimientos.add(movimiento);
+    }
+
+/*    public List<Movimiento> depositos(){
+        return movimientos.stream().filter((e) -> e instanceof Deposito).collect(Collectors.toList());
+    }
+
+    public Double montoTotalDepositos(){
+        return depositos().stream()
+                .mapToDouble(Movimiento::getMonto)
+                .sum();
+    }
+
+    public List<Movimiento> extracciones(){
+        return movimientos.stream().filter((e) -> e instanceof Extraccion).collect(Collectors.toList());
+    }
+
+    public Double montoTotalExtracciones(){
+        return depositos().stream()
+                .mapToDouble(Movimiento::getMonto)
+                .sum();
+    }*/
+
 }
