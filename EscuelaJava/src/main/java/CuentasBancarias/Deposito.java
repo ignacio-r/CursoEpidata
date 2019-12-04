@@ -7,4 +7,5 @@ public class Deposito extends Movimiento {
         super(monto, cuentaOrigen);
     }
 
+
 }

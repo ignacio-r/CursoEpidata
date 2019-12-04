@@ -8,12 +8,14 @@ public abstract class Movimiento {
 
     private Double monto;
     private LocalDateTime fechaYHorario;
-    private Cuenta origen;
 
     Movimiento(Double monto, Cuenta cuentaOrigen) {
+        this(monto);
+    }
+
+    Movimiento(Double monto) {
         this.fechaYHorario = LocalDateTime.now();
         this.monto = monto;
-        this.origen = cuentaOrigen;
     }
 
     LocalDate fecha() {
@@ -28,11 +30,15 @@ public abstract class Movimiento {
         return monto;
     }
 
-    public Cuenta getOrigen() {
-        return origen;
-    }
-
     public Boolean estaConfirmado() {
         return true;
+    }
+
+    public Boolean esDebito() {
+        return this instanceof Extraccion;
+    }
+
+    public Boolean esCredito() {
+        return this instanceof Deposito;
     }
 }
