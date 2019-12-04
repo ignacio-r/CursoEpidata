@@ -8,8 +8,7 @@ public class Cuenta {
 
     public static final String SALDO_INSUFICIENTE = "Saldo insuficiente!";
     private final LocalDate fechaApertura;
-    protected Double saldo = 0.0;
-    private LocalDate apertura;
+    protected Double saldo;
     private ArrayList<Movimiento> movimientos = new ArrayList<>();
 
     public Cuenta(Double saldo) {
