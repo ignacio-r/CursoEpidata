@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Cuenta {
 
-    static final String SALDO_INSUFICIENTE = "Saldo insuficiente!";
+    public static final String SALDO_INSUFICIENTE = "Saldo insuficiente!";
     private final LocalDate fechaApertura;
     protected Double saldo = 0.0;
     private LocalDate apertura;
@@ -72,9 +72,10 @@ public class Cuenta {
 
     public void transferir(double monto, Cuenta cuenta) {
         transferir(monto, monto, cuenta);
-        Transferencia transferencia = new Transferencia(monto, this, cuenta);
+        Transferencia transferencia = new TransferenciaOriginada(monto, cuenta, 5);
+        TransferenciaRecibida transferenciaRecibida = new TransferenciaRecibida(monto, cuenta, 5);
         movimientos.add(transferencia);
-        cuenta.agregarMovimiento(transferencia);
+        cuenta.agregarMovimiento(transferenciaRecibida);
     }
 
     protected void transferir(double debito, double credito, Cuenta cuenta) {

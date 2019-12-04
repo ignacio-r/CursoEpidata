@@ -7,7 +7,7 @@ import java.time.LocalTime;
 public abstract class Movimiento {
 
     private Double monto;
-    private LocalDateTime fechaYHorario;
+    protected LocalDateTime fechaYHorario;
 
     Movimiento(Double monto, Cuenta cuentaOrigen) {
         this(monto);
@@ -36,6 +36,12 @@ public abstract class Movimiento {
 
     public Boolean esDebito() {
         return this instanceof Extraccion;
+    }
+
+    public abstract Boolean credito();
+
+    public Boolean debito() {
+        return !credito();
     }
 
     public Boolean esCredito() {

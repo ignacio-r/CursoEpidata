@@ -6,4 +6,9 @@ public class Extraccion extends Movimiento {
         super(monto, cuentaOrigen);
     }
 
+    @Override
+    public Boolean credito() {
+        return false;
+    }
+
 }

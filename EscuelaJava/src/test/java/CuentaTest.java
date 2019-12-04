@@ -6,7 +6,7 @@ public class CuentaTest {
 
     @Test
     public void unaNuevaCuentaIniciaConCeroPesosYPuedeDepositarYExtraer() {
-        Cuenta cuenta = new Cuenta();
+        Cuenta cuenta = new Cuenta(0.0);
 
         cuenta.depositar(100.0);
         cuenta.extraer(50.0);
@@ -16,7 +16,7 @@ public class CuentaTest {
 
     @Test
     public void noSePuedeExtraerDineroSinSaldoSuficiente() {
-        final Cuenta cuenta = new Cuenta();
+        final Cuenta cuenta = new Cuenta(0.0);
 
         cuenta.depositar(100.0);
 
@@ -29,9 +29,9 @@ public class CuentaTest {
 
     @Test
     public void transfiereDineroAOtraCuenta() {
-        Cuenta cuenta = new Cuenta();
+        Cuenta cuenta = new Cuenta(0.0);
         cuenta.depositar(200.0);
-        Cuenta cuenta1 = new Cuenta();
+        Cuenta cuenta1 = new Cuenta(0.0);
         cuenta.transferir(100.0, cuenta1);
 
         Assertions.assertEquals(100.0, cuenta1.saldo());

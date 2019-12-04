@@ -7,5 +7,10 @@ public class Deposito extends Movimiento {
         super(monto, cuentaOrigen);
     }
 
+    @Override
+    public Boolean credito() {
+        return true;
+    }
+
 
 }

@@ -1,23 +1,25 @@
 package CuentasBancarias;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-public class Transferencia extends Movimiento {
+public abstract class Transferencia extends Movimiento implements Recurrente {
 
     private final Long PLAZO_ACREDITACION = 6l;
     private Long plazoAcreditacionEnDias;
+    protected Integer periodicidad;
 
-    Transferencia(Double monto) {
+    Transferencia(Double monto, Integer periodicidad) {
         super(monto);
         this.plazoAcreditacionEnDias = PLAZO_ACREDITACION;
+        this.periodicidad = periodicidad;
     }
-
-    //TODO destino y origen
 
     @Override
     public Boolean estaConfirmado() {
         return fecha().plusDays(PLAZO_ACREDITACION).isBefore(LocalDate.now());
     }
+
 
     @Override
     public Boolean esDebito() {
@@ -27,6 +29,14 @@ public class Transferencia extends Movimiento {
     @Override
     public Boolean esCredito() {
         return this instanceof TransferenciaRecibida;
+    }
+
+    public Integer periodicidad() {
+        return periodicidad;
+    }
+
+    public LocalDateTime proxima() {
+        return this.fechaYHorario.plusDays(periodicidad);
     }
 
     public Long getPlazoAcreditacionEnDias() {
